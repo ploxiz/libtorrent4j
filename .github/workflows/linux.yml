@@ -29,6 +29,7 @@ jobs:
           cpu: cortex-a7
           base_image: raspios_lite:latest
           cpu_info: cpuinfo/raspberrypi_3b
+          bind_mount_repository: true
           commands: |
             sudo cat /proc/cpuinfo
             sudo apt update
