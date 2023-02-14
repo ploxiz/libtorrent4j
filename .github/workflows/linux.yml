@@ -32,10 +32,10 @@ jobs:
           bind_mount_repository: true
           commands: |
             sudo cat /proc/cpuinfo
-            sudo apt update
-            sudo apt install libboost-all-dev
-            sudo apt install libssl-dev
-            sudo apt install ninja-build
+            sudo apt-get -y update
+            sudo apt-get -y install libboost-all-dev
+            sudo apt-get -y install libssl-dev
+            sudo apt-get -y install ninja-build
             cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
             cmake --build build --config Release --parallel 2
             objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
