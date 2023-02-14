@@ -32,22 +32,23 @@ jobs:
           bind_mount_repository: true
           commands: |
             sudo cat /proc/cpuinfo
-            sudo apt-get -y update
-            sudo apt-get -y install libboost-all-dev
-            sudo apt-get -y install libssl-dev
-            sudo apt-get -y install ninja-build
-            cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
-            cmake --build build --config Release --parallel 2
-            objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
-            strip --strip-unneeded -x build/libtorrent4j.so
-            readelf -d build/libtorrent4j.so
-      - uses: actions/upload-artifact@v2
-        with:
-          name: libtorrent4j-linux-cmake
-          path: |
-            build/libtorrent4j.so
-            build/libtorrent4j.so.debug
-          retention-days: 5
+            df -h
+#            sudo apt-get -y update
+#            sudo apt-get -y install libboost-all-dev
+#            sudo apt-get -y install libssl-dev
+#            sudo apt-get -y install ninja-build
+#            cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
+#            cmake --build build --config Release --parallel 2
+#            objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
+#            strip --strip-unneeded -x build/libtorrent4j.so
+#            readelf -d build/libtorrent4j.so
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: libtorrent4j-linux-cmake
+#          path: |
+#            build/libtorrent4j.so
+#            build/libtorrent4j.so.debug
+#          retention-days: 5
 
 #   x86_64-b2:
 #     runs-on: ubuntu-18.04
