@@ -35,9 +35,12 @@ jobs:
             sudo cat /proc/cpuinfo
             df -h
             sudo apt-get -y update
+            df -h
+            sudo apt-get -y install cmake
             sudo apt-get -y install libboost-all-dev
             sudo apt-get -y install libssl-dev
             sudo apt-get -y install ninja-build
+            df -h
             cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
             cmake --build build --config Release --parallel 2
             objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
