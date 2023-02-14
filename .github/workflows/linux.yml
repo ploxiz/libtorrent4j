@@ -19,11 +19,16 @@ env:
 jobs:
 
   x86_64-cmake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+      - uses: pguyot/arm-runner-action@v2
+        with:
+          cpu: cortex-a8
+          base_image: raspios_lite:latest
+          cpu_info: raspberrypi_3b
       - name: install packages
         run: |
           sudo apt update
@@ -40,11 +45,6 @@ jobs:
           strip --strip-unneeded -x build/libtorrent4j.so
       - name: dependencies
         run: readelf -d build/libtorrent4j.so
-      # too flaky
-#      - name: test
-#        run: |
-#          cp build/libtorrent4j.so .
-#          ./gradlew test
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j-linux-cmake
