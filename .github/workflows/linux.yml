@@ -28,6 +28,7 @@ jobs:
         with:
           cpu: cortex-a7
           base_image: raspios_lite:latest
+          cpu_info: cpuinfo/raspberrypi_3b
           commands: |
             sudo cat /proc/cpuinfo
       - name: test-arm
