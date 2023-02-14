@@ -31,25 +31,15 @@ jobs:
           cpu_info: cpuinfo/raspberrypi_3b
           commands: |
             sudo cat /proc/cpuinfo
-      - name: test-arm
-        run: |
-          sudo cat /proc/cpuinfo
-      - name: install packages
-        run: |
-          sudo apt update
-          sudo apt install libboost-all-dev
-          sudo apt install libssl-dev
-          sudo apt install ninja-build
-      - name: cmake
-        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
-      - name: build
-        run: cmake --build build --config Release --parallel 2
-      - name: strip
-        run: |
-          objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
-          strip --strip-unneeded -x build/libtorrent4j.so
-      - name: dependencies
-        run: readelf -d build/libtorrent4j.so
+            sudo apt update
+            sudo apt install libboost-all-dev
+            sudo apt install libssl-dev
+            sudo apt install ninja-build
+            cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
+            cmake --build build --config Release --parallel 2
+            objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
+            strip --strip-unneeded -x build/libtorrent4j.so
+            readelf -d build/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j-linux-cmake
