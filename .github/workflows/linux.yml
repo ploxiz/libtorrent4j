@@ -26,9 +26,12 @@ jobs:
           submodules: recursive
       - uses: pguyot/arm-runner-action@v2
         with:
-          cpu: cortex-a8
+          cpu: cortex-a7
           base_image: raspios_lite:latest
           cpu_info: raspberrypi_3b
+      - name: test-arm
+        run: |
+          sudo cat /proc/cpuinfo
       - name: install packages
         run: |
           sudo apt update
