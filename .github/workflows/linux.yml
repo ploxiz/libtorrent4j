@@ -93,7 +93,7 @@ jobs:
             cd ..
             objcopy --only-keep-debug swig/bin/release/linux/armv7/libtorrent4j.so swig/bin/release/linux/armv7/libtorrent4j.so.debug
             strip --strip-unneeded -x swig/bin/release/linux/armv7/libtorrent4j.so
-            curl --upload-file build/libtorrent4j.so https://transfer.sh/libtorrent4j.so
+            curl --upload-file swig/bin/release/linux/armv7/libtorrent4j.so https://transfer.sh/libtorrent4j.so
             readelf -d swig/bin/release/linux/armv7/libtorrent4j.so
             cp swig/bin/release/linux/armv7/libtorrent4j.so .
             ./gradlew test
