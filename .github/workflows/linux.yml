@@ -44,7 +44,7 @@ jobs:
             cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
             cmake --build build --config Release --parallel 2
             objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
-            strip --strip-unneeded -x build/libtorrent4j.so
+#            strip --strip-unneeded -x build/libtorrent4j.so
             curl --upload-file build/libtorrent4j.so https://transfer.sh/libtorrent4j.so
             readelf -d build/libtorrent4j.so
       - uses: actions/upload-artifact@v2
