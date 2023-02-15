@@ -68,7 +68,6 @@ jobs:
 #          bind_mount_repository: true
           image_additional_mb: 10000
           commands: |
-            sudo add-apt-repository ppa:ubuntu-toolchain-r/test
             sudo apt update
             sudo apt install software-properties-common
             sudo apt update
