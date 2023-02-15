@@ -11,7 +11,7 @@ on:
 env:
   BOOST_DOT_VERSION: "1.78.0"
   BOOST_VERSION: "1_78_0"
-  OPENSSL_VERSION: "1.1.1m"
+  OPENSSL_VERSION: "1.1.1c"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
   CXX: g++-10
   CC: gcc-10
@@ -68,6 +68,11 @@ jobs:
 #          bind_mount_repository: true
           image_additional_mb: 10000
           commands: |
+            wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+            tar xzf openssl.tar.gz
+            cd openssl-${OPENSSL_VERSION}
+            ./Configure LIST
+            exit
             sudo apt-get -y update
             sudo apt-get -y install software-properties-common
             sudo apt-get -y update
