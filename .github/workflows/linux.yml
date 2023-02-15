@@ -70,6 +70,7 @@ jobs:
           commands: |
             sudo apt-get -y update
             sudo apt-get -y install gcc-10
+            sudo apt-get -y install cmake
             sudo apt-get -y install libssl-dev
             wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
             tar xzf openssl.tar.gz
