@@ -17,43 +17,6 @@ env:
   CC: gcc-10
 
 jobs:
-
-#   x86_64-cmake:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#         with:
-#           submodules: recursive
-#       - uses: pguyot/arm-runner-action@v2
-#         with:
-#           cpu: cortex-a7
-#           base_image: raspios_lite:latest
-#           cpu_info: cpuinfo/raspberrypi_3b
-# #          bind_mount_repository: true
-#           image_additional_mb: 10000
-#           commands: |
-#             sudo cat /proc/cpuinfo >> test
-#             df -h
-#             sudo apt-get -y update
-#             df -h
-#             sudo apt-get -y install cmake
-#             sudo apt-get -y install libboost-all-dev
-#             sudo apt-get -y install libssl-dev
-#             sudo apt-get -y install ninja-build
-#             df -h
-#             cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
-#             cmake --build build --config Release --parallel 2
-#             objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
-#             curl --upload-file build/libtorrent4j.so https://transfer.sh/libtorrent4j.so
-#             readelf -d build/libtorrent4j.so
-#       - uses: actions/upload-artifact@v2
-#         with:
-#           name: libtorrent4j-linux-cmake
-#           path: |
-#             build/libtorrent4j.so
-#             build/libtorrent4j.so.debug
-#           retention-days: 5
-
   armv7-b2:
     runs-on: ubuntu-latest
     steps:
@@ -65,8 +28,7 @@ jobs:
           cpu: cortex-a7
           base_image: raspios_lite:latest
           cpu_info: cpuinfo/raspberrypi_3b
-#          bind_mount_repository: true
-          image_additional_mb: 10000
+          image_additional_mb: 5000
           commands: |
             sudo apt-get -y update
             sudo apt-get -y install gcc-10
@@ -95,5 +57,9 @@ jobs:
             strip --strip-unneeded -x swig/bin/release/linux/armv7/libtorrent4j.so
             curl --upload-file swig/bin/release/linux/armv7/libtorrent4j.so https://transfer.sh/libtorrent4j.so
             readelf -d swig/bin/release/linux/armv7/libtorrent4j.so
-            cp swig/bin/release/linux/armv7/libtorrent4j.so .
-            ./gradlew test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: libtorrent4j-armv7-b2
+          path: |
+            swig/bin/release/linux/armv7/libtorrent4j.so
+            retention-days: 30
