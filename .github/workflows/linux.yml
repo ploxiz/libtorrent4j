@@ -30,9 +30,9 @@ jobs:
           image_additional_mb: 5000
           commands: |
             sudo apt-get -y update
-            sudo apt-get -y libboost-all-dev
-            sudo apt-get -y libssl-dev
-            sudo apt-get -y ninja-build
+            sudo apt-get -y install libboost-all-dev
+            sudo apt-get -y install libssl-dev
+            sudo apt-get -y install ninja-build
             sudo apt-get -y install libatomic1
             cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
             cmake --build build --config Release --parallel 2
