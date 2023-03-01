@@ -28,9 +28,11 @@ jobs:
           cpu: cortex-a7
           base_image: raspios_lite:latest
           cpu_info: cpuinfo/raspberrypi_3b
+          bind_mount_repository: true
           image_additional_mb: 5000
           commands: |
             sudo apt-get -y update
+            sudo apt-get -y install libatomic1
             sudo apt-get -y install gcc-10
             sudo apt-get -y install cmake
             sudo apt-get -y install libssl-dev
