@@ -35,7 +35,7 @@ jobs:
             sudo apt-get -y install ninja-build
             sudo apt-get -y install libatomic1
             sudo apt-get -y install cmake
-            cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
+            cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_FLAGS=-latomic -B build -G "Ninja" swig
             cmake --build build --config Release --parallel 2
             objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
             strip --strip-unneeded -x build/libtorrent4j.so
